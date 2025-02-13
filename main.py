@@ -1,32 +1,22 @@
-from proxy_calculator import ProxyCalculator
-from template_method import TemplateMethod
+from calculator import Calculator
+from free_calculator import FreeCalculator
+from input_templates import AgeInput, EmailInput
 
 if __name__ == "__main__":
-    print("=== Free User ===")
-    free_calc = ProxyCalculator(is_premium=False)
-    print("Addition:", free_calc.add(5, 3))
-    print("Subtraction:", free_calc.sub(10, 4))
-    print("Multiplication:", free_calc.mul(5, 3))
-    print("Division:", free_calc.div(10, 2))
-    print("Power:", free_calc.power(2, 3))
+    full_calc = Calculator()
+    free_calc = FreeCalculator(full_calc)
 
-    print("\n=== Premium User ===")
-    premium_calc = ProxyCalculator(is_premium=True)
-    print("Addition:", premium_calc.add(5, 3))
-    print("Multiplication:", premium_calc.mul(5, 3))
-    print("Division:", premium_calc.div(10, 2))
-    print("Power:", premium_calc.power(2, 3))
+    print("Free Calculator Addition: 5 + 3 =", free_calc.add(5, 3))
+    print("Free Calculator Subtraction: 10 - 4 =", free_calc.sub(10, 4))
+    try:
+        free_calc.mul(2, 3)
+    except Exception as e:
+        print("Free Calculator Multiplication:", e)
 
-    print("\n=== Input Validation ===")
+    age_input = AgeInput()
+    age = age_input.get_input()
+    print("Your age is:", age)
 
-    while True:
-        user_number = TemplateMethod.get_valid_integer()
-        print("Valid number:", user_number)
-        break
-
-    while True:
-        user_email = TemplateMethod.get_valid_email()
-        print("Valid email:", user_email)
-        break
-
-    print("\nProcess completed successfully.")
+    email_input = EmailInput()
+    email = email_input.get_input()
+    print("Your email address is:", email)
