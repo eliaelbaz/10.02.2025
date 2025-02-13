@@ -1,6 +1,4 @@
 class Calculator:
-    """Full-featured calculator for premium users."""
-
     def add(self, a, b):
         """Returns the sum of a and b."""
         return a + b
